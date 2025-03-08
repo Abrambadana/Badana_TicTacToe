@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+        }
+
+        .container-fluid {
+            height: 100vh;
+        }
+
+        /* Scoreboard Styles */
+        .card {
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .card-title {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: bold;
+            color: #00ffff;
+        }
+
+        .display-4 {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: #00ff00;
+        }
+
+        #playerXLabel, #playerOLabel {
+            color: #00ff00;
+        }
+
+        /* Game Board Styles */
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            width: 80vw;
+            max-width: 350px;
+        }
+
+        .cell {
+            aspect-ratio: 1 / 1;
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid #00ffff;
+            background: rgba(0, 0, 0, 0.5);
+            color: #00ff00;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+            .cell:hover {
+                background: rgba(0, 255, 255, 0.2);
+                border-color: #00ff00;
+            }
+
+            .cell.winning-cell {
+                background: #00ff00;
+                color: #000;
+                font-weight: bold;
+            }
+
+        /* Buttons */
+        .btn-lg {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background: rgba(0, 123, 255, 0.7);
+            border-color: rgba(0, 123, 255, 1);
+        }
+
+        .btn-success {
+            background: rgba(40, 167, 69, 0.7);
+            border-color: rgba(40, 167, 69, 1);
+        }
+
+        .btn-danger {
+            background: rgba(220, 53, 69, 0.7);
+            border-color: rgba(220, 53, 69, 1);
+        }
+
+        #restartBtn {
+            background: rgba(255, 0, 0, 0.7);
+            color: #fff;
+        }
+
+            #restartBtn:hover {
+                background: rgba(255, 0, 0, 0.9);
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/js/game.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
